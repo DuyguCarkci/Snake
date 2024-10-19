@@ -5,8 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Food : MonoBehaviour
 {
-    public Collider2D gridArea; // Yiyecek nesnelerinin konumlandýrýlacaðý alan
-    public GameObject foodPrefab; // Yiyecek prefabý için referans
+    public Collider2D gridArea; 
+    public GameObject foodPrefab; 
     private Snake snake;
 
     private void Awake()

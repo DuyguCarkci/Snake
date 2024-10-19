@@ -12,10 +12,10 @@ public class Snake : MonoBehaviour
     public int initialSize = 4;
     public bool moveThroughWalls = false;
 
-    public AudioSource audioSource;  // Ses kaynaðý (AudioSource)
-    public AudioClip eatSound;       // Yemek yeme sesi (AudioClip)
-    public FoodSpawner foodSpawner;  // FoodSpawner referansý
-    public ScoreManager scoreManager; // ScoreManager referansý
+    public AudioSource audioSource; 
+    public AudioClip eatSound;       
+    public FoodSpawner foodSpawner; 
+    public ScoreManager scoreManager; 
 
     private readonly List<Transform> segments = new List<Transform>();
     private Vector2Int input;
@@ -24,7 +24,7 @@ public class Snake : MonoBehaviour
     private void Start()
     {
         ResetState();
-        audioSource = GetComponent<AudioSource>();  // AudioSource bileþenini al
+        audioSource = GetComponent<AudioSource>(); 
     }
 
     private void Update()
@@ -65,7 +65,6 @@ public class Snake : MonoBehaviour
             direction = input;
         }
 
-        // Segmentleri hareket ettir
         for (int i = segments.Count - 1; i > 0; i--)
         {
             segments[i].position = segments[i - 1].position;
@@ -77,7 +76,6 @@ public class Snake : MonoBehaviour
 
         nextUpdate = Time.time + (1f / (speed * speedMultiplier));
 
-        // Yýlanýn kendi kuyruðuna çarpýp çarpmadýðýný kontrol et
         CheckSelfCollision();
     }
 
@@ -114,25 +112,23 @@ public class Snake : MonoBehaviour
             if (Mathf.RoundToInt(segment.position.x) == x &&
                 Mathf.RoundToInt(segment.position.y) == y)
             {
-                return true; // Yýlan bu konumu kaplýyor
+                return true;
             }
         }
-        return false; // Yýlan bu konumu kaplamýyor
+        return false;
     }
 
-    // Yýlanýn kendisine çarpýp çarpmadýðýný kontrol et
     private void CheckSelfCollision()
     {
         for (int i = 1; i < segments.Count; i++)
         {
             if (segments[i].position == transform.position)
             {
-                // Yýlan kendi kuyruðuna çarptý, skoru sýfýrla ve yeniden baþlat
                 if (scoreManager != null)
                 {
-                    scoreManager.ResetScore();  // Skoru sýfýrla
+                    scoreManager.ResetScore();
                 }
-                ResetState();  // Yýlaný baþa döndür
+                ResetState();
                 break;
             }
         }
@@ -143,19 +139,17 @@ public class Snake : MonoBehaviour
         if (other.gameObject.CompareTag("Food"))
         {
             Grow();
-            audioSource.PlayOneShot(eatSound);  // Yemek yeme sesini çal
-            Destroy(other.gameObject);  // Yiyeceði yok et
+            audioSource.PlayOneShot(eatSound);  
+            Destroy(other.gameObject);  
 
-            // Yeni yiyecek spawn et
             if (foodSpawner != null)
             {
                 foodSpawner.SpawnFood();
             }
 
-            // Skoru artýr
             if (scoreManager != null)
             {
-                scoreManager.IncreaseScore(); // Skoru artýr
+                scoreManager.IncreaseScore();
             }
         }
         else if (other.gameObject.CompareTag("Obstacle"))
@@ -170,10 +164,9 @@ public class Snake : MonoBehaviour
             }
             else
             {
-                // Skoru sýfýrla
                 if (scoreManager != null)
                 {
-                    scoreManager.ResetScore();  // Skoru sýfýrla
+                    scoreManager.ResetScore();  
                 }
                 ResetState();
             }

@@ -15,9 +15,9 @@ public class SoundManager : MonoBehaviour
     {
         if (audioSource != null)
         {
-            audioSource.volume = newVolume; // Ses seviyesini ayarla
-            AudioListener.volume = newVolume; // Genel ses seviyesini ayarla
-            PlayerPrefs.SetFloat("Volume", newVolume); // Ses seviyesini kaydet
+            audioSource.volume = newVolume; 
+            AudioListener.volume = newVolume;
+            PlayerPrefs.SetFloat("Volume", newVolume); 
         }
         else
         {

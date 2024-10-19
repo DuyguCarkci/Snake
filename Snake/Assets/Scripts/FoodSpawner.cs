@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class FoodSpawner : MonoBehaviour
 {
-    public GameObject foodPrefab; // Yiyecek prefab'ini inspector'da atayýn
-    public BoxCollider2D gridArea; // Grid alaný olarak kullanacaðýnýz 2D BoxCollider
+    public GameObject foodPrefab; 
+    public BoxCollider2D gridArea; 
 
     private void Start()
     {
@@ -18,10 +18,8 @@ public class FoodSpawner : MonoBehaviour
 
     private Vector2 GetRandomPositionWithinCollider()
     {
-        // Collider'ýn sýnýrlarýný al
         Bounds bounds = gridArea.bounds;
 
-        // Rastgele bir x ve y pozisyonu üret, collider'ýn sýnýrlarý içinde kalsýn
         float xPos = Random.Range(bounds.min.x, bounds.max.x);
         float yPos = Random.Range(bounds.min.y, bounds.max.y);
 

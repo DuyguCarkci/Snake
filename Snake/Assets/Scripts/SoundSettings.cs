@@ -5,32 +5,32 @@ using UnityEngine.UI;
 
 public class SoundSettings : MonoBehaviour
 {
-    public Slider volumeSlider; // Slider referansý
-    private SoundManager soundManager; // SoundManager referansý
+    public Slider volumeSlider;
+    private SoundManager soundManager; 
 
     private void Awake()
     {
-        soundManager = FindObjectOfType<SoundManager>(); // SoundManager'ý bul
+        soundManager = FindObjectOfType<SoundManager>();
     }
 
     private void Start()
     {
         LoadSettings();
-        volumeSlider.onValueChanged.AddListener(SetVolume); // Slider deðiþtiðinde ses seviyesini ayarla
+        volumeSlider.onValueChanged.AddListener(SetVolume); 
     }
 
     public void LoadSettings()
     {
-        float volume = PlayerPrefs.GetFloat("Volume", 1f); // Kaydedilen ses seviyesini yükle
+        float volume = PlayerPrefs.GetFloat("Volume", 1f); 
         volumeSlider.value = volume;
-        soundManager.SetVolume(volume); // Ses seviyesini ayarla
+        soundManager.SetVolume(volume);
     }
 
     public void SetVolume(float newVolume)
     {
         if (soundManager != null)
         {
-            soundManager.SetVolume(newVolume); // SoundManager üzerinden ses seviyesini ayarla
+            soundManager.SetVolume(newVolume); 
         }
         else
         {
